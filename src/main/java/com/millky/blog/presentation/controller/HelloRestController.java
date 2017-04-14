@@ -28,8 +28,4 @@ public class HelloRestController {
         return helloList;
     }
     
-    @RequestMapping("/")
-    public String index() {
-        return "hello world!222";
-    }   
 }
