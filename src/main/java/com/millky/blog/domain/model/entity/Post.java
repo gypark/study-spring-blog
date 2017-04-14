@@ -17,7 +17,7 @@ public class Post {
     @GeneratedValue
     int id;
 
-    String subject;
+    String title;
 
     String subtitle;
     
@@ -31,7 +31,7 @@ public class Post {
      */
     @Override
     public String toString() {
-        return "Post [id=" + id + ", subject=" + subject + ", content=" + content + ", regDate=" + regDate
+        return "Post [id=" + id + ", subject=" + title + ", content=" + content + ", regDate=" + regDate
                 + ", subtitle=" + subtitle + "]";
     }
 }

@@ -72,10 +72,15 @@
 
     <form action="/post/write" onsubmit="$('#content').val($('#pen').html()); pen.destroy();" method="post">
 
-        <input type="text" name="subject" placeholder="Subject"
-            style="height: 70px; width: 100%; font-size: 55px; 
-            border: none; border-right: 0px; border-top: 0px; boder-left: 0px; boder-bottom: 1px; outline-style: none; 
+        <input type="text" name="title" placeholder="Title"
+            style="height: 70px; width: 100%; font-size: 55px;
+            border: none; border-right: 0px; border-top: 0px; boder-left: 0px; boder-bottom: 1px; outline-style: none;
             font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-weight: 800;">
+
+        <input type="text" name="subtitle" placeholder="Subtitle (option)"
+            style="height: 60px; width: 100%; font-size: 24px;
+            border: none; border-right: 0px; border-top: 0px; boder-left: 0px; boder-bottom: 1px; outline-style: none;
+            font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-weight: 600;">
 
         <input type="hidden" name="content" id="content">
 
@@ -118,7 +123,7 @@
                 this.classList.remove('disabled');
             }
         });
-        
+
         // 바디의 마진을 가지고 와서. 툴바의 좌측으로.
     </script>
 </body>
