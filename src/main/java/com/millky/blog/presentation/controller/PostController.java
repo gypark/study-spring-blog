@@ -2,6 +2,7 @@ package com.millky.blog.presentation.controller;
 
 import java.util.Date;
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.millky.blog.domain.model.entity.Post;
 import com.millky.blog.infrastructure.dao.PostDao;
+
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/post")
@@ -24,7 +27,7 @@ public class PostController {
     }
 
     @RequestMapping(value = "/write", method = RequestMethod.POST)
-    public String write(Post post) {
+    public String write(@Valid Post post) {
         post.setRegDate(new Date());
         return "redirect:/post/" + postDao.save(post).getId();
     }
