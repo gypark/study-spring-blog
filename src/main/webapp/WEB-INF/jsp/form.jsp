@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -21,6 +22,9 @@
   #hinted{color:#1abf89;cursor:pointer;}
   #hinted.disabled{color:#666;}
   #hinted:before{content: '\e816';}
+
+  .errorblock { border: 2px solid red; }
+  .error { color: red; }
 </style>
 
 <link rel="stylesheet" href="/webjars/pen/0.2.2/src/pen.css" />
@@ -70,29 +74,31 @@
       <i class="pen-icon icon-createlink" data-action="createlink"></i>
     </div>
 
-    <form action="/post/write" onsubmit="$('#content').val($('#pen').html()); pen.destroy();" method="post">
+    <form:form action="/post/write" commandName="post" onsubmit="if($('#pen').html()!='<p><br></p>')$('#content').val($('#pen').html()); pen.distroy();" method="post">
+        <form:errors path="*" cssClass="errorblock" element="div" />
 
-        <input type="text" name="title" placeholder="Title"
+        <form:input type="text" path="title" placeholder="Title"
             style="height: 70px; width: 100%; font-size: 55px;
             border: none; border-right: 0px; border-top: 0px; boder-left: 0px; boder-bottom: 1px; outline-style: none;
-            font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-weight: 800;">
+            font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-weight: 800;" />
 
-        <input type="text" name="subtitle" placeholder="Subtitle (option)"
+        <form:errors path="title" cssClass="error" />
+
+        <form:input type="text" path="subtitle" placeholder="Subtitle (option)"
             style="height: 60px; width: 100%; font-size: 24px;
             border: none; border-right: 0px; border-top: 0px; boder-left: 0px; boder-bottom: 1px; outline-style: none;
-            font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-weight: 600;">
-
-        <input type="hidden" name="content" id="content">
+            font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-weight: 600;" />
 
         <hr style="margin-top: 2px; border-top: 1px solid #999;">
 
         <div data-toggle="pen" data-placeholder="Content" id="pen" style="min-height: 200px;"></div>
+        <form:input type="hidden" path="content" id="content" />
+        <form:errors path="content" cssClass="error" />
 
         <hr>
 
-        <button type="submit" class="btn btn-primary btn-lg btn-block">저장</button>
-
-    </form>
+        <button type="submit" class="btn btn-primaryh btn-lg btn-block">저장</button>
+    </form:form>
 
     <p class="text-muted">Powered By <a href="http://millky.com">Millky</a> | WYSIWYG Editor by <a href="https://github.com/sofish/pen">Pen Editor</a></p>
 
